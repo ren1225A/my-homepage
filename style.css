@@ -1,0 +1,241 @@
+/* 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #fff;
+    background-color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #555;
+}
+
+/* ヘッダー部分 */
+.hero {
+    /* もともとの background-image を消して、以下のように書き換える */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* 0.4は暗さ。数字を上げると暗くなります */
+        url("カフェ.jpg");
+    
+    background-size: cover;
+    background-position: center;
+    /* コントラストを直接上げる場合は以下を追加 */
+    filter: contrast(110%) brightness(90%); 
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+.shop-name {
+    display: inline-block;
+    border: 1px solid #fff;
+    padding: 5px 30px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.owner-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+}
+
+.owner-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+}
+
+.owner-text {
+    text-align: left;
+    border: 1px dashed #fff;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.3);
+}
+
+.must-see {
+    background-color: #d9534f;
+    padding: 10px 15px;
+    font-weight: bold;
+    transform: skewX(-10deg);
+}
+
+/* メニュー部分 */
+.menu {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url("レトロ.jpg");
+    
+    background-size: cover;
+    filter: contrast(120%);
+}
+
+.menu h2 {
+    margin-bottom: 30px;
+}
+
+.menu-item {
+    width: 30%;
+    min-width: 150px;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 300px;      /* 高さを出すことで迫力を出します */
+    object-fit: cover;
+    border: 3px solid #edf0e9;
+}
+
+/* メニューの文字も少し大きく */
+.menu-item p {
+    font-size: 1.4rem; 
+    margin-top: 15px;
+}
+
+/* 店舗情報部分 */
+.shop-info {
+    background-color: #ffdc52;
+    color: #fff;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.section-label {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    background-color: #ffa500;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+.info-title {
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.info-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.map-img img {
+    width: 200px;
+    border: 5px solid #fff;
+}
+
+.details p {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.icons {
+    font-size: 4rem;
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+}
+/* 1. メニューの並び全体を画面中央に寄せる */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+
+
+/* 2. 各メニュー（写真＋文字）を縦に並べて中央揃えにする */
+.menu-item {
+    display: flex;
+    flex-direction: column;  /* 縦に並べる */
+    align-items: center;     /* ★これで写真と文字が左右中央に揃います */
+    width: auto;            /* 1つあたりの幅を固定（お好みで調整） */
+}
+
+/* 3. 写真の見た目を整える（黄緑色の枠） */
+.menu-item img {
+    width: 100%;
+    height: 150px;           /* 高さを揃えるときれいに見えます */
+    object-fit: cover;
+    border: 3px solid #edf0e9; /* カンプ通りの黄緑色の枠 */
+    margin-bottom: 10px;     /* 写真と文字の間の隙間 */
+}
+
+/* 4. 文字を中央にする */
+.menu-item p {
+    color: white;
+    text-align: center;      /* 文字そのものの中央揃え */
+    font-weight: bold;
+}
+/* フェードインのアニメーション本体 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* 下から浮き上がる */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* アニメーションを適用するクラス */
+.fade-in-element {
+    opacity: 0; /* 最初は消しておく */
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+/* 遅れて出すための設定 */
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1.0s; }
+
+/* スクロール時フェードイン用（写真） */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+/* 画面に入ったら表示 */
+.scroll-fade.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.menu-item:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+/* n番目の要素に少しずつ遅延（delay）をかける */
+.menu-item:nth-child(1) { transition-delay: 2.0s; }
+.menu-item:nth-child(2) { transition-delay: 2.2s; }
+.menu-item:nth-child(3) { transition-delay: 2.4s; }
+.menu-item:nth-child(4) { transition-delay: 2.6s; }
+.menu-item:nth-child(5) { transition-delay: 2.8s; }
